@@ -12,6 +12,7 @@ include(CheckIncludeFile)
 include(CheckIncludeFileCXX)
 include(CheckCXXCompilerFlag)
 include(CheckLibraryExists)
+include(GNUInstallDirs)
 
 include_directories(
   ${CMAKE_SOURCE_DIR}
@@ -41,6 +42,9 @@ option(GALERA_GCS_SM_DEBUG
   "Enable dumping of send monitor state and history" OFF)
 option(GALERA_GU_DEBUG_MUTEX "Enable mutex debug instrumentation" OFF)
 option(GALERA_GU_DBUG_ON "Enable sync point macros (ON for Debug builds)" OFF)
+
+option(GALERA_SYSTEMD_UNITDIR "The directory where the systemd units will be installed"
+       ${CMAKE_INSTALL_LIBDIR}/systemd/system)
 
 #
 # Set cmake policies before doing any checks.
@@ -111,9 +115,9 @@ if (NOT ${CMAKE_SYSTEM_NAME} MATCHES ".*BSD")
     ${CMAKE_SOURCE_DIR}/AUTHORS
     ${CMAKE_SOURCE_DIR}/COPYING
     ${CMAKE_SOURCE_DIR}/README
-    DESTINATION doc)
+    DESTINATION ${CMAKE_INSTALL_DOCDIR})
   install(FILES ${CMAKE_SOURCE_DIR}/asio/LICENSE_1_0.txt
-    DESTINATION doc
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}
     RENAME LICENSE.asio)
 endif()
 

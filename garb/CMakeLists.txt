@@ -31,14 +31,18 @@ target_compile_options(garbd
 target_link_libraries(garbd gcs4garb gcomm gcache
   ${Boost_PROGRAM_OPTIONS_LIBRARIES})
 
-install(TARGETS garbd DESTINATION bin)
+install(TARGETS garbd DESTINATION ${CMAKE_INSTALL_BINDIR})
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES ".*BSD")
   install(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/files/garb.cnf
+    DESTINATION ${CMAKE_INSTALL_SYSCONFDIR})
+  install(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/files/garb.service
+    DESTINATION ${GALERA_SYSTEMD_UNITDIR})
+  install(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/files/garb-systemd
-    DESTINATION share)
+    DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
   install(FILES
     ${CMAKE_SOURCE_DIR}/man/garbd.8
-    DESTINATION man/man8)
+    DESTINATION ${CMAKE_INSTALL_MANDIR}/man8)
 endif()

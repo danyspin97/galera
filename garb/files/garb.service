@@ -12,7 +12,7 @@ Alias=garbd.service
 
 [Service]
 User=nobody
-ExecStart=/usr/bin/garb-systemd start
+ExecStart=/usr/libexec/garb-systemd start
 
 # Use SIGINT because with the default SIGTERM
 # garbd fails to reliably transition to 'destroyed' state

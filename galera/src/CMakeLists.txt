@@ -112,7 +112,7 @@ endif()
 
 target_link_libraries(galera_smm galera ${GALERA_LINK_OPTIONS})
 
-install(TARGETS galera_smm DESTINATION lib)
+install(TARGETS galera_smm DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # The following checks are guaranteed to work only
 # Linux platform, we skip them on others.
